@@ -1,32 +1,5 @@
 use warp::Filter;
-use serde::Serialize;
-
-#[derive(Debug, Serialize)]
-struct QuestionId(String);
-
-#[derive(Debug, Serialize)]
-struct Question {
-    id: QuestionId,
-    title: String,
-    content: String,
-    tags: Option<Vec<String>>,
-}
-
-impl Question {
-    fn new(
-        id: QuestionId,
-        title: String,
-        content: String,
-        tags: Option<Vec<String>>
-    ) -> Self {
-        Question {
-            id,
-            title,
-            content,
-            tags,
-        }
-    }
-}
+use ch3::{Question, QuestionId};
 
 
 async fn get_questions() -> Result<impl warp::Reply, warp::Rejection> {
